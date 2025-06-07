@@ -657,7 +657,7 @@ end
 |0-39|F|0.00|Fail|
 
 ### Task5
-Write a C program that reads three numbers, **a**, **b**, and **c**, from the user, and then solves the quadratic equation: $$ a^2+bx+c =0 $$ The program should handle the following cases:
+Write a Ruby program that reads three numbers, **a**, **b**, and **c**, from the user, and then solves the quadratic equation: $$ a^2+bx+c =0 $$ The program should handle the following cases:
 
 1. When the discriminant b2−4ac is positive, there are two real and distinct roots.
 2. When the discriminant is zero, there is one real root .
