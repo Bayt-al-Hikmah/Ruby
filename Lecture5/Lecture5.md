@@ -165,8 +165,8 @@ puts Person.instance_methods(false)
 - `.class` returns an object's class. 
 - `instance_of?` checks whether an object is a direct instance of a specific class. 
 - `respond_to?` checks whether an object can respond to a particular method. 
--`instance_methods(false)` returns the instance methods defined directly by a class, excluding methods inherited from its ancestors.
--`instance_methods` returns the instance methods defined directly by a class, including methods inherited from its ancestors.
+- `instance_methods(false)` returns the instance methods defined directly by a class, excluding methods inherited from its ancestors.
+- `instance_methods` returns the instance methods defined directly by a class, including methods inherited from its ancestors.
 ### Opening and Modifying Existing Classes
 In Ruby, we’re free to reopen any class even built-in ones and add or modify methods.
 **Example: Add a method to `String`**
