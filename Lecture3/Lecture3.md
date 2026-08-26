@@ -11,7 +11,7 @@ We create method by following those steps:
 2. Choose a method name.
 3. Decide what parameters it needs.
 4. Define what it should return.
-```
+```ruby
 def say_hello   
 	puts "Hello, user!" 
 end  
@@ -22,7 +22,7 @@ To call a method, simply use its name as shown above with `say_hello`.
 ### Method with Parameters
 We can make a method accept arguments by adding parameters in parentheses after the method name in the definition. Parameters act as placeholders for the values (arguments) we pass when calling the method.  
 We can also return a value from the method using the `return` keyword, followed by the value or variable we want to return.
-```
+```ruby
 def add_two_numbers(num1, num2)
 	result = num1 + num2   
 	return result 
@@ -32,7 +32,7 @@ puts a
 ```
 ### Default Parameters
 We can make parameters optional by assigning them default values. If no argument is provided when calling the method, the default value will be used instead.
-```
+```ruby
 def say_hello(name = "user")
 	puts "Hello #{name}" 
 end  
@@ -45,7 +45,7 @@ say_hello("Mohamed")
 Global scope represents the outermost level of a script. Any variable or constant defined outside of any class or module belongs to this global scope, and these are known as global variables (typically prefixed with a `$` like `$my_global_variable`) or global constants. Consequently, global variables and constants can be accessed and used from any part of the Ruby program, including within methods and blocks of code.
 #### Local scope
 Local scope restricts the accessibility of a variable or constant to the specific block of code where it is defined. When a variable is created within a method, for instance, it possesses local scope and is referred to as a local variable. These local variables are only visible and usable within the boundaries of that particular method and are not accessible from outside its definition.
-```
+```ruby
 def add_two_numbers(num1, num2)
 	result = num1 + num2   
 	return result 
@@ -54,16 +54,16 @@ a = add_two_numbers(2, 3)
 puts a 
 puts result  # Error: undefined local variable`
 ```
-### Arbitrary Number of Parameters
+### Arbitrary Number of Arguments
 We can design methods to accept a variable number of arguments by defining a special parameter that begins with an asterisk (`*`). When a method is called with multiple arguments corresponding to this starred parameter, Ruby gathers all those arguments and automatically stores them within an `Array`.
-```
+```ruby
 def say_hello(*names)
 	names.each { |name| puts "Hello #{name}" } 
 end  
 say_hello("Mohamed", "Ahmed", "Ali")
 ```
 We can also enable a Ruby method to accept an arbitrary number of key-value pair arguments by using a double splat operator (`**`) before a parameter name. This special parameter will collect all the keyword arguments passed to the method and store them in a `Hash`.
-```
+```ruby
 def say_hello(**names)
 	names.each { |key, value| puts "Hello #{value}" } 
 end  
@@ -71,7 +71,7 @@ say_hello(name1: "Mohamed", name2: "Ahmed", name3: "Ali")
 ```
 ### Passing Method as Argument
 In Ruby, we can pass one method to another by converting it into a **Method object** using the `method` keyword. This allows the receiving method to call it later using `.call`. It's a simple and direct way to treat methods as data and reuse them dynamically.
-```
+```ruby
 def greet(name)
   puts "Hello, #{name}!"
 end
@@ -85,7 +85,7 @@ run_callback(method(:greet), "Ruby")
 In this example, `method(:greet)` turns the method into an object that can be passed around. The `run_callback` method accepts this object and executes it with `.call`.
 ### Return Method 
 In Ruby, methods can return **other methods** as objects. This is done by using the `method` keyword, which turns a method into a **Method object**. These returned Method objects can be stored in variables, passed to other methods, or called later using `.call`.
-```
+```ruby
 def add(a, b)
   a + b
 end
@@ -121,7 +121,7 @@ we know that:
 - 5! is equal to 5\*4\*3\*2\*1 = 5\*4! 
 
 with that in mind, we can set the base condition as if n == 0 we return 1,else we return n multiplied by the factorial of n-1 and so on
-```
+```ruby
 def factorial(n)   
 	return 1 if n == 0   
 	n * factorial(n - 1) 
@@ -130,17 +130,30 @@ puts factorial(5)
 ```
 ### Lambda Methods 
 Anonymous functions, known as **lambda functions**, are useful when we want to create short, one-time-use functionality without defining a full method. In Ruby, we can create a lambda using the `lambda` keyword or the shorthand `->` syntax.  
-To see how lambda functions are useful, let's say we want to define a behavior that takes two numbers and an operator, then performs a calculation based on that operator. Here's how we can do this using lambdas:
+```ruby
+# With lambda
+add = lambda do |a, b|
+        a + b
+end
+
+puts add.call(4, 5)
+# with -> syntext
+
+multiply = ->(a, b) {a * b}
+
+puts multiply.call(3, 4)
 ```
-operations = {
+To see how lambda functions are useful, let's say we want to define a behavior that takes two numbers and an operator, then performs a calculation based on that operator. Here's how we can do this using lambdas:
+```ruby
+OPERATIONS = {
   "+" => ->(a, b) { a + b },
   "-" => ->(a, b) { a - b },
   "*" => ->(a, b) { a * b },
   "/" => ->(a, b) { a / b.to_f }
 }
 def calculate(a, b, operator)
-  if operations[operator]
-    return operations[operator].call(a, b)
+  if OPERATIONS[operator]
+    return OPERATIONS[operator].call(a, b)
   else
     return "Unsupported operator"
   end
@@ -153,9 +166,9 @@ puts calculate(10, 5, "/")  # Output: 2.0
 ```
 Here, we created a hash of lambda functions where each operator is mapped to a corresponding lambda. The `calculate` method then selects and calls the right lambda based on the operator passed.  
 We can also send lambda function directly as argument without storing it in variable
-```
+```ruby
 def apply_operation(lambda_func, number)
-    lambda_func.call(number)
+   lambda_func.call(number)
 end
 
 number = 5
@@ -182,18 +195,18 @@ In functional programs variables, once defined don't change their value througho
 In functional programming, we can't modify a variable after it's been initialized. We can create new variables but we can't modify existing variables, and this really helps to maintain state throughout the runtime of a program. Once we create a variable and set its value, we can have full confidence knowing that the value of that variable will never change.
 ## Modules
 ### Introduction
-**Modules** in Ruby are a way to group together related methods, constants, and classes. They help organize code into reusable.
+**Modules** in Ruby are a way to group together related methods, constants, and classes. They help organize code into reusable functionality.  
 In addition to grouping reusable functionality, modules are also used to create **namespaces**, helping prevent name collisions between methods, classes, or constants from different parts of a program.
 ### Built-in Modules
 Ruby comes with a rich set of **built-in modules** that provide useful functionality out of the box. These modules are part of Ruby's **standard library**, and we can use them without installing anything extra. Built-in modules help us perform common tasks such as mathematical operations, file handling, date and time manipulation, and more.
 #### Using Built-in Modules
-There is 2 type of builte in modules
+There is two type of builte in modules
 1. **Core Modules** These are **always loaded** and available by default. We can use them **without requiring** anything, Examples:
 	- `Math`
 	- `Kernel`
 	- `Comparable`
 	- `Enumerable`
-```
+```ruby
 puts Math.sqrt(25)  # => 5.0
 ```
 2. **Standard Library Modules** These are **part of Ruby**, but we **must explicitly `require`** them before use. Examples:
@@ -202,7 +215,7 @@ puts Math.sqrt(25)  # => 5.0
 	- `FileUtils`
 	- `Set`
 	- `Net::HTTP`
-```
+```ruby
 require 'date'
 
 puts Date.today
@@ -211,7 +224,7 @@ puts Date.today
 We can create our own modules using the `module` keyword, followed by the module’s name written in **CamelCase**. Inside the module, we define the methods we want to group together ,we should use `self.` before each method name so we can call it using our module. We then end the module definition with the `end` keyword.
 #### Example
 Creating greeting module and save it as `greetings.rb`
-```
+```ruby
 module Greetings
   def self.say_hello(name)
     puts "Hello, #{name}!"
@@ -219,7 +232,7 @@ module Greetings
 end
 ```
 Then to use the custom module, we first **require** the file where it is defined 
-```
+```ruby
 require './greetings'
 Greetings.say_hello("Ali")
 ```
@@ -237,7 +250,7 @@ Examples:
 - `pp` (pretty print)
 - `benchmark`
 - `open-uri`
-```
+```ruby
 require 'json'
 
 data = { name: "Ali", age: 22 }
@@ -247,7 +260,7 @@ puts JSON.generate(data)
 We can create our own gems to organize and share code across different projects. A gem wraps your functionality inside a clean, versioned, and reusable structure.  
 To create a gem:
 1. First we run the following command to generate the skeleton:
-```
+```shell
 bundle gem my_gem
 ```    
 2. This will create a folder structure like:
@@ -259,7 +272,7 @@ my_gem/
 └── ...
 ```
 3. Inside `lib/my_gem.rb`, we define our module and methods:
-```
+```ruby
 module MyGem
   def self.say_hello(name)
     puts "Hello, #{name}!"
@@ -269,24 +282,24 @@ end
 
 To use our custom gem locally:
 1. We should build and install the gem:
-```
+```shell
 gem build my_gem.gemspec
 gem install ./my_gem-0.1.0.gem
 ```
-    
+
 2. Then we require it in our script:
-```
+```ruby
 require 'my_gem'
 MyGem.say_hello("Ali")
 ```
 ### Installing Third-Party Gems
 Ruby provides a built-in tool called `gem` to install and manage third-party gems. These gems are hosted on [RubyGems.org](https://rubygems.org), which is the central repository for Ruby libraries.  
 If we want install a gem, we use the `gem install` command followed by the gem name:
-```
+```shell
 gem install httparty
 ```
 Once installed, we can use the gem in our Ruby script by requiring it:
-```
+```ruby
 require 'httparty'
 
 response = HTTParty.get('https://api.github.com')

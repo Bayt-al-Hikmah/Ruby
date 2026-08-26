@@ -6,88 +6,87 @@
 ## Working with String Arrays and Hashes
 ### Strings
 We use **strings** to store text values like names, messages, or any kind of written data. Strings are created by wrapping text in either double quotes (`"`) or single quotes (`'`):
-```
+```ruby
 name = "Alice"
 greeting = 'Hello, world!'
 ```
-
 But strings in Ruby aren’t just plain text Ruby gives us **many built-in methods** to work with and manipulate strings easily.
 #### Accessing Characters in a String
 In Ruby, we can access individual characters in a string using **index numbers**. Just like arrays, string indices start at **0** so the first character is at position `0`, the second at `1`, and so on.
-```
+```ruby
 word = "Ruby"  puts word[0]  # => "R" 
 puts word[1]  # => "u" puts word[3]  # => "y"
 ```
 If we try to access an index that’s out of bounds, Ruby will return `nil`:
-```
+```ruby
 puts word[10]  # => nil
 ```
 #### Negative Indexing
 We can also use **negative numbers** to count from the end of the string:
-```
-word = "Ruby"  puts word[-1]  # => "y" (last character) 
+```ruby
+word = "Ruby"  
+puts word[-1]  # => "y" (last character) 
 puts word[-2]  # => "b"
 ```
 #### Accessing Substrings
 We can get more than one character using a **range** or a starting index with length:  
 **Range:**
-```
+```ruby
 word = "Programming" 
 puts word[0..4]   # => "Progr"  (from index 0 to 4)
 ```
 **Start and length:**
-```
+```ruby
 puts word[0, 5]   # => "Progr"  (start at 0, take 5 chars)
 ```
 #### String Methods 
 ##### `.length`
 Returns the number of characters in the string:
 
-```
+```ruby
 name = "Alice" 
 puts name.length     # => 5
 ```
 ##### `.upcase` and `.downcase`
 Convert a string to all **uppercase** or **lowercase**:
 
-```
+```ruby
 puts "hello".upcase   # => "HELLO" 
 puts "WORLD".downcase # => "world"
 ```
 ##### `.strip`
 Removes extra whitespace from the beginning and end:
-```
+```ruby
 input = "   hello   " 
 puts input.strip      # => "hello"
 ```
 ##### `.include?`
 Checks if a string **contains** a certain substring:
-```
+```ruby
 sentence = "Ruby is fun" 
 puts sentence.include?("fun")    # => true 
 puts sentence.include?("boring") # => false
 ```
 ##### `.concat` or `+`
 Adds two strings together:
-```
+```ruby
 greeting = "Hello, " + "Alice" 
 puts greeting         # => "Hello, Alice"
 ```
 You can also use interpolation:
-```
+```ruby
 name = "Bob" 
 puts "Hello, #{name}" # => "Hello, Bob"
 ```
 ##### `.gsub`
 Replaces parts of a string:
-
-```
+```ruby
 text = "I like Java" 
 puts text.gsub("Java", "Ruby")  # => "I like Ruby"
 ```
 ##### `.split`
 Splits a string into an array, based on a character or space:
-```
+```ruby
 words = "apple,banana,orange" 
 puts words.split(",")  # => ["apple", "banana", "orange"]
 ```
@@ -100,19 +99,19 @@ mixed = ["hello", 42, true]
 ```
 #### Accessing Elements in an Array
 Just like strings, we access array elements using **index numbers**, starting from `0`:
-```
+```ruby
 colors = ["red", "green", "blue"]  
 puts colors[0]  # => "red" 
 puts colors[1]  # => "green" 
 puts colors[2]  # => "blue"
 ```
 If we try to access an index that doesn’t exist, Ruby returns `nil`:
-```
+```ruby
 puts colors[10]  # => nil
 ```
 ##### Negative Indexing
 We can also access array elements from the end using **negative indices**:
-```
+```ruby
 colors = ["red", "green", "blue"]  
 puts colors[-1]  # => "blue" (last element) 
 puts colors[-2]  # => "green"
@@ -120,30 +119,30 @@ puts colors[-2]  # => "green"
 ##### Accessing Subarrays
 We can extract a portion of an array using a **range** or by giving a **start index and length**:   
 **Range:**
-```
+```ruby
 numbers = [10, 20, 30, 40, 50] 
 puts numbers[1..3]  # => [20, 30, 40]
 ```
 **Start and length:**
-```
+```ruby
 puts numbers[0, 2]  # => [10, 20]
 ```
 #### Array Methods 
 ##### `.length`
 Returns the number of elements in the array:
-```
+```ruby
 colors = ["red", "green", "blue"] 
 puts colors.length   # => 3
 ```
 ##### `.unshift(value)`
 Inserts an element at the start.
-```
+```ruby
 colors = ["red", "green", "blue"] 
 colors.unshift("black") # => ["black", "red", "green", "blue"]
 ```
 ##### `.push` / `.<<` 
 Adds an element to the end:
-```
+```ruby
 colors = ["red", "green", "blue"] 
 colors.push("yellow") 
 colors << "purple"
@@ -151,62 +150,62 @@ colors << "purple"
 ```
 ##### `.insert(index, value)` 
 Adds an element at the given `index`.
-```
+```ruby
 colors = ["red", "green", "blue"] 
 colors.insert(2, "black")  # => ["red", "green", "black", "blue"]
 ```
 ##### `.shift`  
 Removes and returns the first element.
-```
+```ruby
 colors = ["red", "green", "blue"] 
 first_color = colors.shift
 puts first_color      # => "red"
 ```
+
 ##### `.pop` 
 Removes and returns the last element:
-```
+```ruby
 colors = ["red", "green", "blue"] 
 last_color = colors.pop 
 puts last_color       # => "blue"
 ```
+
 ##### `.delete` 
 Removes all occurrences of `value`.
-
-```
+```ruby
 arr = [1, 2, 3, 2, 4]
 arr.delete(2)  # => [1, 3, 4]
 ```
 
 ##### `.delete_at` 
 Removes the element at the given index.
-
-```
+```ruby
 arr = [1, 2, 3, 4]
 arr.delete_at(1)  # => [1, 3, 4]
 ```
 
 ##### `.uniq!` 
 Removes duplicate values.
-```
+```ruby
 arr = [1, 2, 2, 3]
 arr.uniq!  # => [1, 2, 3]
 ```
 ##### `.include?`
 Checks if the array contains a value:
-```
+```ruby
 colors = ["red", "green", "blue"] 
 puts colors.include?("green")  # => true
 ```
 ##### `.reverse` 
 Returns a new array with the order reversed:
-```
+```ruby
 colors = ["red", "green", "blue"] 
 puts colors.reverse   # => ["blue", "green", "red"]
 ```
 ##### `.sort` 
 Sorts the array (if elements are comparable):
 
-```
+```ruby
 numbers = [3, 1, 5, 2] 
 puts numbers.sort     # => [1, 2, 3, 5]
 ```
@@ -214,14 +213,14 @@ puts numbers.sort     # => [1, 2, 3, 5]
 ##### `.join` 
 Combines array elements into a single string:
 
-```
+```ruby
 colors = ["red", "green", "blue"] 
 puts colors.join(", ")  # => "red, green, blue"
 ```
 ### Hashes
 We use **hashes** to store **key-value pairs** like a dictionary. Each key is linked to a specific value, making hashes perfect for representing things like settings, user profiles, and objects with properties.  
 Hashes are written using curly braces `{}` and use either strings or symbols as 
-```
+```ruby
 person = {   
 "name" => "Alice",   
 "age" => 30 
@@ -234,7 +233,7 @@ age: 30
 ```
 #### Accessing Hash Values
 To access a value, use the corresponding key:
-```
+```ruby
 person = { 
 name: "Alice", 
 age: 30 
@@ -243,8 +242,8 @@ puts person[:name]  # => "Alice"
 puts person[:age]   # => 30`
 ```
 
-If the key doesn’t exist, Ruby returns `nil`:
-```
+If the key doesn't exist, Ruby returns `nil`:
+```ruby
 person = { 
 name: "Alice", 
 age: 30 
@@ -254,7 +253,7 @@ puts person[:email]  # => nil
 
 #### Adding or Updating Entries
 You can add new key-value pairs or update existing ones:
-```
+```ruby
 person = { 
 name: "Alice", 
 age: 30 
@@ -263,13 +262,13 @@ person[:email] = "alice@example.com"
 person[:age] = 31
 ```
 We can use `.store` to add key value
-```
+```ruby
 person.store(:city, "London")  # => "London"
 ```
 #### Hash Methods
 ##### `.keys` and `.values`
 Get an array of all keys or values:
-```
+```ruby
 person = { 
 name: "Alice", 
 age: 30,
@@ -280,7 +279,7 @@ puts person.values # => ["Alice", 31, "alice@example.com"]
 ```
 ##### `.delete(key)`
 Removes a key-value pair:
-```
+```ruby
 person = { 
 name: "Alice", 
 age: 30,
@@ -290,7 +289,7 @@ person.delete(:email)
 ```
 ##### `.clear` 
 Empties the entire hash.
-```
+```ruby
 person = { 
 name: "Alice", 
 age: 30,
@@ -300,7 +299,7 @@ person.clear  # => {}
 ```
 ##### `.has_key?` / `.key?` / `.include?`
 Check if a key exists:
-```
+```ruby
 person = { 
 name: "Alice", 
 age: 30,
@@ -311,7 +310,7 @@ puts person.include?(:age) # => true
 ```
 ##### `.has_value?` 
 Checks if a value exists.
-```
+```ruby
 person = { 
 name: "Alice", 
 age: 30,
@@ -320,16 +319,15 @@ email: "alice@example.com"
 person.value?("Alice")  # => true
 ```
 ##### `.merge`
-Combine two hashes. It returns a new hash (doesn’t change the original):
-```
+Combine two hashes. It returns a new hash, if both have same key use value from new one:
+```ruby
 defaults = { font: "Arial", size: 12 } 
 settings = { size: 14 }  
 puts defaults.merge(settings)  # => { font: "Arial", size: 14 }
 ```
-If we want apply the merge on the old hash we use ``.merge!``
 #### Using Strings as Keys
 While symbols are more common, you can also use strings as keys:
-```
+```ruby
 person = {   
 "name" => "Alice",   
 "age" => 30 
@@ -342,32 +340,32 @@ puts person["name"]  # => "Alice"
 **Comparison operators** help us compare values or variables with each other and create conditions based on the results. These comparisons always return a **boolean value** — either `true` or `false`.  
 Ruby provides us with the following comparison operators:
 - `>` (**Greater than**): Checks if the first operand is greater than the second.  
-```
+```ruby
 5 > 4   # => true  
 3 > 10  # => false
 ```
 - `<` (**Less than**): Checks if the first operand is less than the second.  
-```
+```ruby
 4 < 5   # => true  
 7 < 3   # => false
 ```
 - `==` (**Equal to**): Checks if both operands are equal.  
-```
+```ruby
 4 == 4   # => true  
 "hi" == "hello"  # => false
 ```
 - `!=` (**Not equal to**): Checks if the operands are not equal.  
-```
+```ruby
 1 != 0   # => true  
 5 != 5   # => false
 ```
 - `>=` (**Greater than or equal to**): Checks if the first operand is greater than or equal to the second.  
-```
+```ruby
 2 >= 2   # => true  
 3 >= 5   # => false  
 ```
 - `<=` (**Less than or equal to**): Checks if the first operand is less than or equal to the second.  
-```
+```ruby
 2 <= 3   # => true  
 4 <= 1   # => false
 ```
@@ -376,21 +374,21 @@ Ruby provides **logical operators** to combine multiple conditions and build mor
 #### `||` (OR)
 - Returns `true` if **at least one** of the conditions is true.
 - Returns `false` only if **all** the conditions are false.
-```
+```ruby
 puts true || false   # => true 
 puts false || false  # => false
 ```
 #### `&&` (AND)
 - Returns `true` only if **all** the conditions are true.
 - Returns `false` if **any** of the conditions is false.
-```
+```ruby
 puts true && true    # => true 
 puts true && false   # => false
 ```
 #### `!` (NOT)
 - Reverses the logical state of the condition.
 - If the condition is `true`, `!` makes it `false`, and vice versa.
-```
+```ruby
 puts !true   # => false 
 puts !false  # => true`
 ```
@@ -402,6 +400,7 @@ puts !false  # => true`
 |true|false|false|true|false|
 |false|true|false|true|true|
 |false|false|false|false|true|
+
 ## Conditional Statements
 Conditional statements are fundamental programming constructs that enable our code to make decisions and execute different actions based on specific conditions. They control program flow by evaluating whether certain criteria are met, allowing for dynamic behavior that responds to different situations, inputs, or values.
 ### `if`, `else`, and `elsif` Statement
@@ -413,7 +412,7 @@ if condition
 end
 ```
 **Example:**
-```
+```ruby
 age = 18
 
 if age >= 18
@@ -431,7 +430,7 @@ else
 end
 ```
 **Example**
-```
+```ruby
 is_raining = false
 
 if is_raining
@@ -453,7 +452,7 @@ else
 end
 ```
 **Example:**
-```
+```ruby
 score = 85
 if score >= 90
   puts "Excellent performance"
@@ -477,7 +476,7 @@ else
 end
 ```
 **Example:**
-```
+```ruby
 day = "Monday"
 
 case day
@@ -496,7 +495,7 @@ Loops help us **repeat code** multiple times without rewriting it. They’re ess
 Ruby gives us several types of loops, and each is useful in different situations.
 ### `while` Loop
 A `while` loop keeps running **as long as a condition is true**.
-```
+```ruby
 count = 1  
 while count <= 5   
 	puts "Count is #{count}"   
@@ -514,7 +513,7 @@ Count is 5
 If the condition is `false` to begin with, the code inside won’t run at all.
 ### `until` Loop
 `until` is the **opposite** of `while`: it runs the loop until the condition becomes true.
-```
+```ruby
 count = 1  
 until count > 5   
 	puts "Count is #{count}"   
@@ -524,13 +523,13 @@ end
 Same output as above, but using `until`.
 ### `for` Loop
 A `for` loop goes through a **range or a collection** like an array, we use it when we know how much time we want to repeat a statement:
-```
+```ruby
 for i in 1..3   
 	puts "Iteration #{i}" 
 end
 ```
 We can also use it with arrays:
-```
+```ruby
 fruits = ["apple", "banana", "cherry"]  
 for fruit in fruits   
 	puts fruit 
@@ -539,7 +538,7 @@ end
 ### `.each` Loop
 This is the **most common and Ruby-ish** way to loop through arrays or hashes.
 #### Array Example:
-```
+```ruby
 colors = ["red", "green", "blue"]
 
 colors.each do |color|
@@ -547,7 +546,7 @@ colors.each do |color|
 end
 ```
 #### Hash Example:
-```
+```ruby
 person = { name: "Alice", age: 30 }
 
 person.each do |key, value|
@@ -556,7 +555,7 @@ end
 ```
 ### `loop do` and `break`
 `loop do` creates an **infinite loop**, unless we explicitly stop it with `break`.
-```
+```ruby
 counter = 1
 
 loop do
@@ -570,7 +569,7 @@ end
 - `next`: Skips the rest of the loop for the current iteration and jumps to the next one.  
 
 **Example with next**
-```
+```ruby
 for i in 1..5
   next if i == 3
   puts i
@@ -578,7 +577,7 @@ end
 # Skips 3
 ```
 **Example with break**
-```
+```ruby
 for i in 1..5
   break if i == 4
   puts i
@@ -586,7 +585,7 @@ end
 # Stops after 3
 ```
 we can also use this syntax
-```
+```ruby
 # next
 for i in 1..5
   if i == 3
@@ -596,7 +595,7 @@ for i in 1..5
 end
 ```
 
-```
+```ruby
 # break
 for i in 1..5
   if i == 4
